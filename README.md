@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ### Develop odoo ERP using a docker container
 
 Allows you to run odoo from source without installing any of the dependencies
@@ -29,3 +30,6 @@ TO RUN CLEAN:
 
 TO DEBUG:
 import wdb; wdb.set_trace(); -> localhost:1984
+=======
+# odoo_master_docker
+>>>>>>> 6f8ada6ccbaad0eaf1ca5bc99c091e441126b7d9
