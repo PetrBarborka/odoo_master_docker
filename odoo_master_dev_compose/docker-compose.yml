@@ -1,0 +1,42 @@
+version: '2'
+services:
+  web:
+    image: odoo_master:latest
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+    volumes:
+      - odoo-10-web-data:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ./addons:/mnt/custom-addons
+      - ./sources/addons:/mnt/extra-addons
+      - ./sources:/opt/odoo/sources
+    links:
+      - wdb
+    environment:
+      - WDB_SOCKET_SERVER=wdb
+      - WDB_NO_BROWSER_AUTO_OPEN=True
+      - PYTHONIOENCODING=utf8
+      - PGCLIENTENCODING=utf8
+    #entrypoint: /entrypoint.sh -d odoo --dev=all --test-enable
+    entrypoint: /entrypoint.sh -d odoo
+    #entrypoint: ping google.com
+  db:
+    image: postgres:9.4
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - odoo-10-db-data:/var/lib/postgresql/data/pgdata
+    #command: mgmt_scripts/change_db_owner.sh odoo10devcompose_db_1 
+  wdb:
+    image: kozea/wdb-server:latest
+    ports:
+      - "19840:1984"
+volumes:
+  odoo-10-web-data:
+  odoo-10-db-data:
