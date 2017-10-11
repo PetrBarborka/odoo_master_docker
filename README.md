@@ -28,5 +28,5 @@ TO RUN CLEAN:
 3) change db owner ( mgmt scripts )
 
 TO DEBUG:
-import wdb; wdb.set_trace(); -> localhost:1984
+import wdb; wdb.set_trace(); -> localhost:19840
 =======
